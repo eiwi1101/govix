@@ -5,6 +5,8 @@
 package vix
 
 /*
+#cgo CFLAGS: -I./vendor/libvix/include -Werror
+#cgo LDFLAGS: -L./vendor/libvix -lvixAllProducts -ldl -lpthread
 #include "vix.h"
 #include "helper.h"
 */
