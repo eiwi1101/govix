@@ -705,9 +705,9 @@ func (g *Guest) Logout() error {
 func (g *Guest) RunProgram(path, args string, options RunProgramOption) (uint64, int, int, error) {
 	var jobHandle C.VixHandle = C.VIX_INVALID_HANDLE
 	var err C.VixError = C.VIX_OK
-	var pid *C.uint64
-	var elapsedtime *C.int
-	var exitCode *C.int
+	pid := new(C.uint64)
+	elapsedtime := new(C.int)
+	exitCode := new(C.int)
 
 	cpath := C.CString(path)
 	cargs := C.CString(args)
@@ -787,9 +787,9 @@ func (g *Guest) RunProgram(path, args string, options RunProgramOption) (uint64,
 func (g *Guest) RunScript(shell, args string, options RunProgramOption) (uint64, int, int, error) {
 	var jobHandle C.VixHandle = C.VIX_INVALID_HANDLE
 	var err C.VixError = C.VIX_OK
-	var pid *C.uint64
-	var elapsedtime *C.int
-	var exitCode *C.int
+	pid := new(C.uint64)
+	elapsedtime := new(C.int)
+	exitCode := new(C.int)
 
 	cshell := C.CString(shell)
 	cargs := C.CString(args)
