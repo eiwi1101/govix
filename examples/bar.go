@@ -6,7 +6,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/hooklift/govix"
+	"github.com/eiwi1101/govix"
 )
 
 func main() {

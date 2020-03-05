@@ -21,7 +21,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/hooklift/govmx"
+	"github.com/eiwi1101/govmx"
 )
 
 // VM represents a virtual machine.
@@ -658,8 +658,8 @@ func (v *VM) CreateSnapshot(name, description string, options CreateSnapshotOpti
 	defer C.free(unsafe.Pointer(sdesc))
 
 	jobHandle = C.VixVM_CreateSnapshot(v.handle,
-		sname, // name
-		sdesc, // description
+		sname,                               // name
+		sdesc,                               // description
 		C.VixCreateSnapshotOptions(options), // options
 		C.VIX_INVALID_HANDLE,                // propertyListHandle
 		nil,                                 // callbackProc
@@ -723,8 +723,8 @@ func (v *VM) RemoveSnapshot(snapshot *Snapshot, options RemoveSnapshotOption) er
 	jobHandle = C.VixVM_RemoveSnapshot(v.handle, //vmHandle
 		snapshot.handle,                     //snapshotHandle
 		C.VixRemoveSnapshotOptions(options), //options
-		nil, //callbackProc
-		nil) //clientData
+		nil,                                 //callbackProc
+		nil)                                 //clientData
 
 	defer C.Vix_ReleaseHandle(jobHandle)
 
@@ -1037,11 +1037,11 @@ func (v *VM) SetSharedFolderState(name, hostpath string, options SharedFolderOpt
 	defer C.free(unsafe.Pointer(hpath))
 
 	jobHandle = C.VixVM_SetSharedFolderState(v.handle, //vmHandle
-		sfname, //shareName
-		hpath,  //hostPathName
+		sfname,                               //shareName
+		hpath,                                //hostPathName
 		C.VixMsgSharedFolderOptions(options), //flags
-		nil, //callbackProc
-		nil) //clientData
+		nil,                                  //callbackProc
+		nil)                                  //clientData
 
 	defer C.Vix_ReleaseHandle(jobHandle)
 
@@ -1253,8 +1253,8 @@ func (v *VM) PowerOff(options VMPowerOption) error {
 
 	jobHandle = C.VixVM_PowerOff(v.handle,
 		C.VixVMPowerOpOptions(options), // powerOptions,
-		nil, // callbackProc,
-		nil) // clientData
+		nil,                            // callbackProc,
+		nil)                            // clientData
 
 	defer C.Vix_ReleaseHandle(jobHandle)
 
@@ -1379,8 +1379,8 @@ func (v *VM) Reset(options VMPowerOption) error {
 
 	jobHandle = C.VixVM_Reset(v.handle,
 		C.VixVMPowerOpOptions(options), // powerOptions,
-		nil, // callbackProc,
-		nil) // clientData
+		nil,                            // callbackProc,
+		nil)                            // clientData
 
 	defer C.Vix_ReleaseHandle(jobHandle)
 
@@ -1940,8 +1940,8 @@ func (v *VM) WaitForToolsInGuest(timeout time.Duration) error {
 
 	jobHandle = C.VixVM_WaitForToolsInGuest(v.handle,
 		C.int(timeout.Seconds()), // timeoutInSeconds
-		nil, // callbackProc
-		nil) // clientData
+		nil,                      // callbackProc
+		nil)                      // clientData
 
 	defer C.Vix_ReleaseHandle(jobHandle)
 
